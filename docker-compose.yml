@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+  my-node-app:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - backend-network
+
+  my-angular-app:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    networks:
+      - backend-network
+
+networks:
+  backend-network:
+    driver: bridge
