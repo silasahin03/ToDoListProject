@@ -13,7 +13,11 @@ export class AppComponent implements OnInit{
   
   title = 'frontend';
   todos: Todo[] = [];
-  newTodoText: string= ''
+  newTodoText: string= '';
+  todoId: number | undefined;
+ 
+  
+
 
   constructor(private apiService: ApiService) {}
 
@@ -77,4 +81,19 @@ export class AppComponent implements OnInit{
         console.error('Failed to delete task:', error);
       }
     }
+
+    getTodoById() {
+      try {
+        if (this.todoId !== undefined) {
+          this.apiService.getTask(this.todoId).subscribe((results) => {
+            if (results && results.length > 0) {
+              this.todos.push(...results);
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Failed to fetch todo by ID:', error);
+      }
+    }      
+    
 }
