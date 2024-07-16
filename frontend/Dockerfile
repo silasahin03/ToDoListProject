@@ -14,7 +14,6 @@ COPY . .
 # Uygulamayı derleyelim
 RUN npm run build 
 
-# Nginx servisini başlatalım
 EXPOSE 4200
 
 CMD [ "npm", "start"]
