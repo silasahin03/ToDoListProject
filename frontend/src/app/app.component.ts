@@ -6,7 +6,7 @@ import { firstValueFrom, } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrls: ['./app.component.scss'],
   providers: [ApiService]
 })
 export class AppComponent implements OnInit{
