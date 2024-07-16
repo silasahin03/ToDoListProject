@@ -10,6 +10,7 @@ Projenin dağıtılması ve çalıştırılması sürecini kolaylaştırmak içi
 
 
 $ Api-Backend
+
 -dist: dist dosyası yazılan TypeScript dosyalarını JS diline çevirerek Nest JS'i çalıştırmayı sağlar. Sunucu direkt olarak TypeScript dosyalarını çalıştıramadığı için otomatik olarak JS'e çevirir.
 
 -node modules: node modules dosyası tüm bağımlılıkların, kütüphanelerin olduğu dosyadır. Kodlamada buradaki kütüpleri kullanırız. 
@@ -50,6 +51,7 @@ $ Api-Backend
 
 
 $ Frontend
+
 -angular/cache: dizini ve içindeki dosyalar, genellikle Angular CLI tarafından oluşturulan geçici dosyalardır. Bu dosyalar, Angular CLI'nin kullanımı sırasında oluşturulan geçici verileri içerir. Angular CLI, derleme işlemleri, test çalıştırmaları veya bağımlılıkların yönetimi gibi işlemleri yaparken geçici veriler oluşturabilir ve bu verileri bu tür klasörlere yerleştirebilir.
 
 -.vscode dosyası, Visual Studio Code (VS Code) editöründe proje özelleştirmeleri için kullanılan bir dizindir. Bu dizin ve içindeki dosyalar, proje düzeni, derleme ayarları, hata ayıklama yapılandırmaları gibi çeşitli ayarları ve özellikleri barındırır. 
@@ -73,6 +75,7 @@ $ Frontend
 -sconfig.spec.json: Bu dosya, Angular test dosyalarının derlenmesi için kullanılır. Genellikle karma veya başka bir test çerçevesi tarafından kullanılan testler için TypeScript derleme ayarlarını içerir. 
 
 $ Dockerfile
+
 - WORKDIR komutu, Dockerfile içinde dosya ve dizin işlemlerinin ve komutların hangi dizinde gerçekleşeceğini belirlemek için kullanılır. Bu, dosya kopyalamaları, komut çalıştırmaları ve uygulama başlatma işlemleri gibi adımlarda hangi dizinde olduğumuzu netleştirir.
 
 -COPY . .: Host makinanızdaki tüm dosyaları (Dockerfile ile aynı dizindeki dosyaları) /app dizinine kopyalar.
