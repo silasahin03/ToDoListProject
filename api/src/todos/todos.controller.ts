@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param, Patch, Delete } from '@nestjs/commo
 import { TodosService } from './todos.service';
 import { Todo } from './todo.model';
 
-@Controller('todos')
+@Controller()
 export class TodosController {
   constructor(private readonly todosService: TodosService) {}
 
