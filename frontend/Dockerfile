@@ -15,11 +15,11 @@ COPY . .
 RUN npm run build 
 
 # Prod build sonucunu Nginx ile servis edelim
-FROM nginx:alpline
+FROM nginx:latest
 
 # Nginx konfigürasyonunu kopyalayalım
 COPY --from=build /app/dist/frontend /usr/share/nginx/html
 
 # Nginx servisini başlatalım
-EXPOSE 80
+EXPOSE 4200
 CMD ["nginx", "-g", "daemon off;"]
