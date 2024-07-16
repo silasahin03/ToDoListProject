@@ -14,12 +14,8 @@ COPY . .
 # Uygulamayı derleyelim
 RUN npm run build 
 
-# Prod build sonucunu Nginx ile servis edelim
-FROM nginx:latest
-
-# Nginx konfigürasyonunu kopyalayalım
-COPY --from=build /app/dist/frontend /usr/share/nginx/html
-
 # Nginx servisini başlatalım
 EXPOSE 4200
-CMD ["nginx", "-g", "daemon off;"]
+
+CMD [ "npm", "start"]
+
