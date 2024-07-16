@@ -1,5 +1,5 @@
 # İlk olarak, base image olarak Node.js alalım
-FROM node:20.14 AS build
+FROM node:20 AS build
 
 # Uygulama dizinini oluşturalım ve çalışma dizinini belirleyelim
 WORKDIR /app
@@ -15,7 +15,7 @@ COPY . .
 RUN npm run build 
 
 # Prod build sonucunu Nginx ile servis edelim
-FROM nginx:latest
+FROM nginx:alpline
 
 # Nginx konfigürasyonunu kopyalayalım
 COPY --from=build /app/dist/frontend /usr/share/nginx/html

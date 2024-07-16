@@ -31,4 +31,7 @@ export class ApiService {
   getTask(taskId: number): Observable<Todo> {
     return this.http.get<Todo>(`${this.apiUrl}/tasks/${taskId}`);
   }
+  getLastId(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/last-id`);
+  }
 }

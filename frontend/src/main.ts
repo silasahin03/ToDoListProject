@@ -11,7 +11,7 @@ import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.int
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
-bootstrapApplication(AppComponent, appConfig)
+/*bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
   bootstrapApplication(AppComponent, {
     providers: [ApiService]
@@ -22,4 +22,4 @@ bootstrapApplication(AppComponent, appConfig)
     app.enableCors();
     await app.listen(3000);
   }
-  bootstrap();
+  bootstrap();*/

@@ -1,18 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Todo } from './todo.model';
 import { ApiService } from '../services/api.service';
-import { FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { firstValueFrom, } from 'rxjs';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [FormsModule , CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  providers: [ApiService]
 })
 export class AppComponent implements OnInit{
   
@@ -26,38 +21,47 @@ export class AppComponent implements OnInit{
     this.loadTasks();
   }
 
-    async loadTasks(): Promise<void> {
+  loadTasks() {
       try {
-        const data = await firstValueFrom(this.apiService.getAllTasks());
-        this.todos = data as Todo[];
+        this.apiService.getAllTasks().subscribe((results) => {
+          if (results && results.length > 0) {
+            this.todos.push(...results);
+          }
+          });
       } catch (error) {
         console.error('Failed to load tasks:', error);
       }
     }
   
-    async addTodo(): Promise<void> {
+  addTodo() {
       try {
         if (this.newTodoText.trim() !== '') {
+          this.apiService.getLastId().subscribe(
+            (lastId: number) => {
           const newTodo: Todo = {
-            id: 0, // Bu id API tarafından atanacak
+            id: lastId+1, // Bu id API tarafından atanacak
             text: this.newTodoText,
             completed: false
           };
-          const createdTodo = await firstValueFrom(this.apiService.addTask(newTodo));
-          this.todos.push(createdTodo as Todo);
-          this.newTodoText = ''; // Formu temizle
+        
+          this.apiService.addTask(newTodo).subscribe(() => {
+            this.todos.push(newTodo);
+           // Formu temizle
+          });
+            this.newTodoText = '';
+            });
         }
       } catch (error) {
         console.error('Failed to add task:', error);
       }
-    }
+  }
   
-    async toggleCompleted(id: number): Promise<void> {
+  toggleCompleted(id: number){
       try {
         const todo = this.todos.find(t => t.id === id);
         if (todo) {
           const updatedTodo = { ...todo, completed: !todo.completed };
-          await firstValueFrom(this.apiService.updateTask(id, updatedTodo));
+          this.apiService.updateTask(id, updatedTodo);
           todo.completed = !todo.completed;
         }
       } catch (error) {
@@ -65,9 +69,9 @@ export class AppComponent implements OnInit{
       }
     }
   
-    async deleteTodo(id: number): Promise<void> {
+  deleteTodo(id: number){
       try {
-        await firstValueFrom(this.apiService.deleteTask(id));
+        this.apiService.deleteTask(id);
         this.todos = this.todos.filter(t => t.id !== id);
       } catch (error) {
         console.error('Failed to delete task:', error);

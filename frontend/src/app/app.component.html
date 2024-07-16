@@ -2,12 +2,12 @@
   <h1>Todo List</h1>
   
   <form (ngSubmit)="addTodo()">
-    <input type="text" [value]="newTodoText" name="newTodoText" placeholder="Add a new todo" required>
-    <button type="submit">Add</button>
+    <input type="text" [(ngModel)]="newTodoText" name="newTodoText" placeholder="Add a new todo" required>
+    <button type="submit" (keyup)="addTodo()">Add</button>
   </form>
   
   <ul>
-    <li *ngFor="let todo of todos">
+    <li *ngFor="let todo of loadTasks()">
       <input type="checkbox" [value]="todo.completed" (change)="toggleCompleted(todo.id)">
       <span [class.completed]="{ 'completed': todo.completed }">{{ todo.text }}</span>
       <button (click)="deleteTodo(todo.id)">Delete</button>
