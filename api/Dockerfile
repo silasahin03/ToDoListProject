@@ -1,5 +1,5 @@
 # Base image olarak Node.js 14. sürümü kullan
-FROM node:20.14
+FROM node:20
 
 # Çalışma dizinini oluştur ve belirle
 WORKDIR /app
