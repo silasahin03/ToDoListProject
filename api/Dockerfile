@@ -1,4 +1,4 @@
-# Base image olarak Node.js 14. sürümü kullan
+# Base image olarak Node.js 20. sürümü kullan
 FROM node:20
 
 # Çalışma dizinini oluştur ve belirle
