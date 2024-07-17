@@ -33,7 +33,7 @@ komutu kullanılabilir. Bu imajı kullanarak bir konteyner çalıştırmak için
 
 kodu kullanılabilir. Frontend tarafındaki Dockerfile dosyası ile imaj oluşturmak için 
 
-```docker build -t my-angular-app .  ```
+\```docker build -t my-angular-app .  ```
 
 , bu imaj ile konteyner çalıştırmak için 
 
