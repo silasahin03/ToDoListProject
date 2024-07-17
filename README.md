@@ -9,7 +9,8 @@ kodu kullanılır. Uygulamayı çalıştırmak için
 
 'npm run start' 
 
-kodu kullanılır. Backend kısmı [Google](http://localhost:3000) adresinden kontrol edilebilir.
+kodu kullanılır. Backend kısmı 'http://localhost:3000'
+adresinden kontrol edilebilir.
 Angular yani frontend kısmı ise terminal komutlarıyla 
 
 'ng build' 
@@ -18,13 +19,13 @@ ile derlenir,
 
 'ng serve' 
 
-koduyla da uygulama çalıştırılır. Frontend kısmı [Google](http://localhost:4200) adresinden çalışır.
+koduyla da uygulama çalıştırılır. Frontend kısmı 'http://localhost:4200' adresinden çalışır.
 
 Projede backend kısmındaki veriler ve işlemler Api ile frontend kısmına çekilmiştir. Api ile verileri çekmek için 'http://localhost:3000' adresi kullanılmıştır. 'http://localhost:4200' adresinden ise projenin frontend kısmı kontrol edilebilir.
 
 Projenin dağıtılması ve çalıştırılması sürecini kolaylaştırmak için *Docker* kullanıldı. Backend tarafındaki Dockerfile dosyası ile imaj oluşturmak için 
 
-'docker build -t my-node-app .' 
+\'''docker build -t my-node-app .'''\
 
 komutu kullanılabilir. Bu imajı kullanarak bir konteyner çalıştırmak için 
 
