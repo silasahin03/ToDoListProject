@@ -25,7 +25,8 @@ Projede backend kısmındaki veriler ve işlemler Api ile frontend kısmına çe
 
 Projenin dağıtılması ve çalıştırılması sürecini kolaylaştırmak için *Docker* kullanıldı. Backend tarafındaki Dockerfile dosyası ile imaj oluşturmak için 
 
-```docker build -t my-node-app .     ```
+```docker build -t my-node-app .    
+ ```
 
 komutu kullanılabilir. Bu imajı kullanarak bir konteyner çalıştırmak için 
 
