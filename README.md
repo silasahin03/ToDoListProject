@@ -1,32 +1,55 @@
 # ToDoListProject
 Bu proje bir To Do List projesidir. Backend kısmı *Nest JS*, frontend kısmı *Angular* kullanılarak geliştirilmiştir. Nest JS 20. sürümde, Angular 15. sürümde kullanıldı. 
 
-Projenin backend kısmı yani Nest JS terminal komutuyla 'npm run build' 
-ile derlenir, 
+Projenin backend kısmı yani Nest JS terminal komutuyla derlemek için
+
+'npm run build' 
+
+kodu kullanılır. Uygulamayı çalıştırmak için 
+
 'npm run start' 
-ile uygulama çalıştırılır. Backend kısmı [Google](http://localhost:3000) adresinden kontrol edilebilir.
+
+kodu kullanılır. Backend kısmı [Google](http://localhost:3000) adresinden kontrol edilebilir.
 Angular yani frontend kısmı ise terminal komutlarıyla 
+
 'ng build' 
+
 ile derlenir, 
+
 'ng serve' 
+
 koduyla da uygulama çalıştırılır. Frontend kısmı [Google](http://localhost:4200) adresinden çalışır.
 
 Projede backend kısmındaki veriler ve işlemler Api ile frontend kısmına çekilmiştir. Api ile verileri çekmek için 'http://localhost:3000' adresi kullanılmıştır. 'http://localhost:4200' adresinden ise projenin frontend kısmı kontrol edilebilir.
 
-Projenin dağıtılması ve çalıştırılması sürecini kolaylaştırmak için *Docker* kullanıldı. Backend tarafındaki Dockerfile dosyası ile imaj oluşturmak için 'docker build -t my-node-app .' 
+Projenin dağıtılması ve çalıştırılması sürecini kolaylaştırmak için *Docker* kullanıldı. Backend tarafındaki Dockerfile dosyası ile imaj oluşturmak için 
+
+'docker build -t my-node-app .' 
+
 komutu kullanılabilir. Bu imajı kullanarak bir konteyner çalıştırmak için 
+
 'docker run -d -p 3000:3000 my-node-app' 
+
 kodu kullanılabilir. Frontend tarafındaki Dockerfile dosyası ile imaj oluşturmak için 
+
 'docker build -t my-angular-app .'
+
 , bu imaj ile konteyner çalıştırmak için 
+
 'docker run -d -p 4200:4200 my-angular-app' 
-kodu kullanılabilir. Docker-compose.yml dosyası her iki tarafı da aynı anda çalıştırmak için oluşturulmuştur. 'docker-compose up -- build' 
+
+kodu kullanılabilir. Docker-compose.yml dosyası her iki tarafı da aynı anda çalıştırmak için oluşturulmuştur. 
+
+'docker-compose up -- build' 
+
 kodu docker-compose dosyasını derlemek ve çalıştırmak için kullanılır, 
+
 'docker-compose down'
- kodu ile çalışan çalışan tüm hizmetleri durdurmak ve ilişkili ağları (networks), konteynerleri ve yapılandırmaları kaldırmak için kullanılır. 
+
+kodu ile çalışan çalışan tüm hizmetleri durdurmak ve ilişkili ağları (networks), konteynerleri ve yapılandırmaları kaldırmak için kullanılır. 
 
 
-## Api-Backend
+## Backend
 
 -dist: dist dosyası yazılan TypeScript dosyalarını JS diline çevirerek Nest JS'i çalıştırmayı sağlar. Sunucu direkt olarak TypeScript dosyalarını çalıştıramadığı için otomatik olarak JS'e çevirir.
 
@@ -93,7 +116,7 @@ kodu docker-compose dosyasını derlemek ve çalıştırmak için kullanılır,
 
 ## Dockerfile
 
-- WORKDIR komutu, Dockerfile içinde dosya ve dizin işlemlerinin ve komutların hangi dizinde gerçekleşeceğini belirlemek için kullanılır. Bu, dosya kopyalamaları, komut çalıştırmaları ve uygulama başlatma işlemleri gibi adımlarda hangi dizinde olduğumuzu netleştirir.
+-WORKDIR komutu, Dockerfile içinde dosya ve dizin işlemlerinin ve komutların hangi dizinde gerçekleşeceğini belirlemek için kullanılır. Bu, dosya kopyalamaları, komut çalıştırmaları ve uygulama başlatma işlemleri gibi adımlarda hangi dizinde olduğumuzu netleştirir.
 
 -COPY . .: Host makinanızdaki tüm dosyaları (Dockerfile ile aynı dizindeki dosyaları) /app dizinine kopyalar.
 
