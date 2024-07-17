@@ -3,21 +3,29 @@ Bu proje bir To Do List projesidir. Backend kısmı *Nest JS*, frontend kısmı 
 
 Projenin backend kısmı yani Nest JS terminal komutuyla derlemek için
 
-```npm run build  ```
+```
+npm run build  
+```
 
 kodu kullanılır. Uygulamayı çalıştırmak için 
 
-```npm run start ```
+```
+npm run start 
+```
 
 kodu kullanılır. Backend kısmı 'http://localhost:3000'
 adresinden kontrol edilebilir.
 Angular yani frontend kısmı ise terminal komutlarıyla 
 
-```ng build ```
+```
+ng build 
+```
 
 ile derlenir, 
 
-```ng serve  ```
+```
+ng serve  
+```
 
 koduyla da uygulama çalıştırılır. Frontend kısmı 'http://localhost:4200' adresinden çalışır.
 
@@ -30,23 +38,33 @@ docker build -t my-node-app .
 ```
 komutu kullanılabilir. Bu imajı kullanarak bir konteyner çalıştırmak için 
 
-```docker run -d -p 3000:3000 my-node-app  
+```
+docker run -d -p 3000:3000 my-node-app  
+```
 
 kodu kullanılabilir. Frontend tarafındaki Dockerfile dosyası ile imaj oluşturmak için 
 
-```docker build -t my-angular-app .  ```
+```
+docker build -t my-angular-app .  
+```
 
 , bu imaj ile konteyner çalıştırmak için 
 
-```docker run -d -p 4200:4200 my-angular-app  ```
+```
+docker run -d -p 4200:4200 my-angular-app  
+```
 
 kodu kullanılabilir. Docker-compose.yml dosyası her iki tarafı da aynı anda çalıştırmak için oluşturulmuştur. 
 
-```docker-compose up -- build  ```
+```
+docker-compose up -- build  
+```
 
 kodu docker-compose dosyasını derlemek ve çalıştırmak için kullanılır, 
 
-```docker-compose down  ```
+```
+docker-compose down  
+```
 
 kodu ile çalışan çalışan tüm hizmetleri durdurmak ve ilişkili ağları (networks), konteynerleri ve yapılandırmaları kaldırmak için kullanılır. 
 
