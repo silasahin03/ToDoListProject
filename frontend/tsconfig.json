@@ -25,19 +25,10 @@
     ]
   },
   "angularCompilerOptions": {
-    /*"enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true*/
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
     "preserveSymlinks": true,
     "disableTypeScriptVersionCheck": true
-  },
-  /*"typeRoots": {
-    "node_modules/@types": true,
-    "node_modules/@angular": true,
-    "node_modules/@angular/common/http":true
-  },*/
+  }
 }
   
