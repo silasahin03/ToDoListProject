@@ -6,7 +6,7 @@ import { Todo } from '../app/todo.model';
 describe('ApiService', () => {
   let service: ApiService;
   let httpMock: HttpTestingController;
-  const apiUrl = 'http://localhost:3000';
+  const apiUrl = 'http://localhost:3000/todos';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -66,17 +66,16 @@ describe('ApiService', () => {
   });
 
   it('should delete a task', () => {
-    service.deleteTask(1).subscribe(response => {
-      expect(response).toBeUndefined();
-    });
+    const taskID = 1;
+    service.deleteTask(taskID).subscribe();
 
-    const req = httpMock.expectOne(`${apiUrl}/1`);
+    const req = httpMock.expectOne(`${apiUrl}/${taskID}`);
     expect(req.request.method).toBe('DELETE');
     req.flush(null);
   });
 
   it('should fetch a task by ID', () => {
-    const dummyTodo: Todo = { id: 1, text: 'Test Todo 1', completed: false };
+    const dummyTodo: Todo[]= [{ id: 1, text: 'Test Todo 1', completed: false }];
 
     service.getTask(1).subscribe(todo => {
       expect(todo).toEqual(dummyTodo);
@@ -88,14 +87,13 @@ describe('ApiService', () => {
   });
 
   it('should fetch the last ID', () => {
-    const lastId = 2;
-
+   const taskId = 1;
     service.getLastId().subscribe(id => {
-      expect(id).toBe(lastId);
+      expect(id).toBe(taskId);
     });
 
-    const req = httpMock.expectOne(apiUrl);
+    const req = httpMock.expectOne(`${apiUrl}`);
     expect(req.request.method).toBe('GET');
-    req.flush(lastId);
+    req.flush(taskId); 
   });
 });

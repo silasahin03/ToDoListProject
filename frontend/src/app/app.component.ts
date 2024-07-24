@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from './todo.model';
 import { ApiService } from '../services/api.service';
-import { firstValueFrom, } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +15,6 @@ export class AppComponent implements OnInit{
   newTodoText: string= '';
   todoId: number | undefined;
  
-  
-
-
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
@@ -43,14 +39,13 @@ export class AppComponent implements OnInit{
           this.apiService.getLastId().subscribe(
             (lastId: number) => {
           const newTodo: Todo = {
-            id: lastId+1, // Bu id API tarafından atanacak
+            id: lastId+1, 
             text: this.newTodoText,
             completed: false
           };
         
           this.apiService.addTask(newTodo).subscribe(() => {
             this.todos.push(newTodo);
-           // Formu temizle
           });
             this.newTodoText = '';
             });
@@ -80,20 +75,6 @@ export class AppComponent implements OnInit{
       } catch (error) {
         console.error('Failed to delete task:', error);
       }
-    }
-
-    getTodoById() {
-      try {
-        if (this.todoId !== undefined) {
-          this.apiService.getTask(this.todoId).subscribe((results) => {
-            if (results && results.length > 0) {
-              this.todos.push(...results);
-            }
-          });
-        }
-      } catch (error) {
-        console.error('Failed to fetch todo by ID:', error);
-      }
-    }      
+    }  
     
 }

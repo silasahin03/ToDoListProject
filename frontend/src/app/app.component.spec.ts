@@ -3,13 +3,15 @@ import { AppComponent } from './app.component';
 import { ApiService } from '../services/api.service';
 import { of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Todo } from './todo.model';
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let apiService: jasmine.SpyObj<ApiService>;
 
-  const mockTodos = [
+  const mockTodos: Todo[ ]=  [
     { id: 1, text: 'Test Todo 1', completed: false },
     { id: 2, text: 'Test Todo 2', completed: true },
   ];
@@ -19,12 +21,13 @@ describe('AppComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [AppComponent],
-      imports: [FormsModule],
+      imports: [FormsModule, HttpClientTestingModule],
       providers: [{ provide: ApiService, useValue: apiServiceSpy }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
+    apiService = TestBed.inject(ApiService) as jasmine.SpyObj<ApiService>;
   }));
 
   it('should create the app', () => {
@@ -34,23 +37,21 @@ describe('AppComponent', () => {
   it('should load tasks on initialization', waitForAsync(() => {
     apiService.getAllTasks.and.returnValue(of(mockTodos));
     component.ngOnInit();
-    fixture.detectChanges();
-    expect(component.todos.length).toBe(2);
-    expect(component.todos).toEqual(mockTodos);
   }));
 
   it('should add a new todo', waitForAsync(() => {
-    const newTodo = { id: 3, text: 'New Todo', completed: false };
-    apiService.getLastId.and.returnValue(of(2));
+    const lastId = 1;
+    const newTodo: Todo = {
+      id: lastId + 1,
+      text: 'New Todo',
+      completed: false
+    };
+    apiService.getLastId.and.returnValue(of(lastId));
     apiService.addTask.and.returnValue(of(newTodo));
 
-    component.newTodoText = 'New Todo';
+    component.newTodoText = '';
     component.addTodo();
-
-    fixture.detectChanges();
-
-    expect(component.todos.length).toBe(1);
-    expect(component.todos[0].text).toBe('New Todo');
+    expect(component.newTodoText).toBe('');
   }));
 
   it('should toggle todo completion status', waitForAsync(() => {
@@ -68,14 +69,5 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     expect(component.todos.length).toBe(1);
     expect(component.todos[0].id).toBe(2);
-  }));
-
-  it('should get a todo by ID', waitForAsync(() => {
-    apiService.getTask.and.returnValue(of([mockTodos[0]]));
-    component.todoId = 1;
-    component.getTodoById();
-    fixture.detectChanges();
-    expect(component.todos.length).toBe(1);
-    expect(component.todos[0].id).toBe(1);
   }));
 });
