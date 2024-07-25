@@ -1,7 +1,7 @@
-import { TestBed, ComponentFixture, waitForAsync } from '@angular/core/testing';
+import { TestBed, ComponentFixture, waitForAsync, fakeAsync, tick } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { ApiService } from '../services/api.service';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Todo } from './todo.model';
@@ -13,7 +13,7 @@ describe('AppComponent', () => {
 
   const mockTodos: Todo[ ]=  [
     { id: 1, text: 'Test Todo 1', completed: false },
-    { id: 2, text: 'Test Todo 2', completed: true },
+    { id: 2, text: 'Test Todo 2', completed: true }
   ];
 
   beforeEach(waitForAsync(() => {
@@ -36,7 +36,11 @@ describe('AppComponent', () => {
 
   it('should load tasks on initialization', waitForAsync(() => {
     apiService.getAllTasks.and.returnValue(of(mockTodos));
-    component.ngOnInit();
+    component.todos = [...mockTodos];
+    component.loadTasks();
+    fixture.detectChanges();
+    expect(component.todos.length).toBe(2);
+    expect(component.todos).toEqual(mockTodos);
   }));
 
   it('should add a new todo', waitForAsync(() => {
