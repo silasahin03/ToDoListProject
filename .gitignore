@@ -1,2 +1,9 @@
 # Ignore Angular cache files
 /frontend/.angular/cache/15.2.11
+/api/dist/*
+/api/node_modules/*
+/api/package-lock.json
+/api/public/*
+/frontend/dist/*
+/frontend/node_modules/*
+/frontend/public/*
