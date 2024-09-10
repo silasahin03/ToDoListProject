@@ -68,13 +68,14 @@ export class AppComponent implements OnInit{
       }
     }
   
-  deleteTodo(id: number){
-      try {
-        this.apiService.deleteTask(id);
+  deleteTodo(id: number): void {
+    this.apiService.deleteTask(id).subscribe({
+      next: () => {
         this.todos = this.todos.filter(t => t.id !== id);
-      } catch (error) {
+      },
+      error: (error) => {
         console.error('Failed to delete task:', error);
       }
-    }  
-    
+    });
+  }
 }

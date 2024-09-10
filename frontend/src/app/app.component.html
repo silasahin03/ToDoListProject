@@ -1,19 +1,26 @@
-<div>
-  <h1>Todo List</h1>
-  
-  <form (ngSubmit)="addTodo()">
-    <input type="text" [(ngModel)]="newTodoText" name="newTodoText" placeholder="Add a new todo" required>
-    <button type="submit">Add</button>
-  </form>
-  
-  <ul>
-    <li *ngFor="let todo of todos">
-      <input type="checkbox" [value]="todo.completed" (change)="toggleCompleted(todo.id)">
-      <span [class.completed]="{ 'completed': todo.completed }">{{ todo.text }}</span>
-      <button (click)="deleteTodo(todo.id)">Delete</button>
-    </li>
-  </ul>
-</div>
+<div class="todo-container">
+  <div class="todo-header">
+  <h1>My To Do List</h1>
 
+  </div>
+  
+  <div class="todo-body">
+    <form (ngSubmit)="addTodo()">
+      <input type="text" [(ngModel)]="newTodoText" name="newTodoText" placeholder="Add a new todo" required>
+      <button type="submit">Add</button>
+    </form>
+    
+    <ul>
+      <li *ngFor="let todo of todos">
+        <label class="custom-checkbox">
+          <input type="checkbox" [checked]="todo.completed" (change)="toggleCompleted(todo.id)">
+          <span class="checkmark"></span>
+        </label>
+        <span [class.completed]="todo.completed">{{ todo.text }}</span>
+        <button (click)="deleteTodo(todo.id)">Delete</button>
+      </li>
+    </ul>
+  </div>
+</div>
 
 

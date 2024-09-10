@@ -62,7 +62,7 @@ pipeline {
                 script {
                     sh 'docker-compose up -d'
                 }
-                 script {
+                script {
                     sh 'docker-compose down'
                 }
             }
@@ -75,13 +75,13 @@ pipeline {
         }
         success {
             mail to: "${env.EMAIL_RECIPIENTS}",
-                 subject: "Deployment Successful: ${currentBuild.fullDisplayName}",
-                 body: "The deployment of ${env.JOB_NAME} #${env.BUILD_NUMBER} was successful."
+                subject: "Deployment Successful: ${currentBuild.fullDisplayName}",
+                body: "The deployment of ${env.JOB_NAME} #${env.BUILD_NUMBER} was successful."
         }
         failure {
             mail to: "${env.EMAIL_RECIPIENTS}",
-                 subject: "Deployment Failed: ${currentBuild.fullDisplayName}",
-                 body: "The deployment of ${env.JOB_NAME} #${env.BUILD_NUMBER} has failed."
+                subject: "Deployment Failed: ${currentBuild.fullDisplayName}",
+                body: "The deployment of ${env.JOB_NAME} #${env.BUILD_NUMBER} has failed."
         }
     }
 }
