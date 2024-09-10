@@ -6,7 +6,7 @@ import { Todo } from '../app/todo.model';
 describe('ApiService', () => {
   let service: ApiService;
   let httpMock: HttpTestingController;
-  const apiUrl = 'http://localhost:3000/todos';
+  const apiUrl = 'http://localhost:3000';
 
   beforeEach(() => {
     TestBed.configureTestingModule({

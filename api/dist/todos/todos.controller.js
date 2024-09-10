@@ -73,7 +73,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TodosController.prototype, "remove", null);
 exports.TodosController = TodosController = __decorate([
-    (0, common_1.Controller)(''),
+    (0, common_1.Controller)(),
     __metadata("design:paramtypes", [todos_service_1.TodosService])
 ], TodosController);
 //# sourceMappingURL=todos.controller.js.map
